@@ -6,11 +6,23 @@
 #     https://docs.scrapy.org/en/latest/topics/settings.html
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+from shutil import which
 
 BOT_NAME = 'scrapy_selnm'
 
 SPIDER_MODULES = ['scrapy_selnm.spiders']
 NEWSPIDER_MODULE = 'scrapy_selnm.spiders'
+
+## Using selenium-scrapy
+# Ref : https://github.com/clemfromspace/scrapy-selenium
+# Ref : https://stackoverflow.com/questions/68870629/unable-to-run-scrapy-selenium-library-with-ui-with-head
+# Ref : https://stackoverflow.com/questions/66157915/keyerror-driver-in-printresponse-request-metadriver-title
+
+SELENIUM_DRIVER_NAME = 'chrome'
+SELENIUM_DRIVER_EXECUTABLE_PATH = '../webdriver/chromedriver'
+SELENIUM_BROWSER_EXECUTABLE_PATH = which('google-chrome')
+SELENIUM_DRIVER_ARGUMENTS = []
+DOWNLOADER_MIDDLEWARES = {'scrapy_selenium.SeleniumMiddleware': 800}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
